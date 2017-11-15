@@ -36,11 +36,6 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk16</artifactId>
-            <version>1.46</version>
-        </dependency>
-        <dependency>
             <groupId>com.microsoft.azure.sdk.iot.provisioning.security</groupId>
             <artifactId>security-provider</artifactId>
             <version>0.0.1</version>
@@ -61,6 +56,11 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure.sdk.iot</groupId>
+            <artifactId>iot-deps</artifactId>
+            <version>0.1.4</version>
         </dependency>
     </dependencies>
     <build>

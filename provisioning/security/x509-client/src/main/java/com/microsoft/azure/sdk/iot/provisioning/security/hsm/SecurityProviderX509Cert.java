@@ -7,15 +7,11 @@
 
 package com.microsoft.azure.sdk.iot.provisioning.security.hsm;
 
+import com.microsoft.azure.sdk.iot.deps.util.PemUtilities;
 import com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderX509;
 import com.microsoft.azure.sdk.iot.provisioning.security.exceptions.SecurityClientException;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.openssl.PEMReader;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.security.Key;
-import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Collection;
@@ -52,15 +48,15 @@ public class SecurityProviderX509Cert extends SecurityProviderX509
         this.signerCertificates = new LinkedList<>();
         try
         {
-            this.leafCertificatePublic = this.convertPemToCertificate(leafCertificatePublicPem);
-            this.leafPrivateKey = this.convertPemToPrivateKey(leafPrivateKeyPem);
+            this.leafCertificatePublic = PemUtilities.parsePublicKeyCertificate(leafCertificatePublicPem);
+            this.leafPrivateKey = PemUtilities.parsePrivateKey(leafPrivateKeyPem);
             for (String cert : signerCertificates)
             {
-                this.signerCertificates.add(this.convertPemToCertificate(cert));
+                this.signerCertificates.add(PemUtilities.parsePublicKeyCertificate(cert));
             }
             this.commonNameLeaf = getCommonName(this.leafCertificatePublic);
         }
-        catch (IOException | CertificateException e)
+        catch (CertificateException e)
         {
             throw new SecurityClientException(e);
         }
@@ -70,30 +66,6 @@ public class SecurityProviderX509Cert extends SecurityProviderX509
     {
         //TODO : this needs testing
         return  certificate.getIssuerX500Principal().getName();
-    }
-
-    private X509Certificate convertPemToCertificate(String pem) throws IOException, CertificateException
-    {
-        Security.addProvider(new BouncyCastleProvider());
-        PEMReader pemCert = new PEMReader(new StringReader(pem));
-        Object possiblePemCert = pemCert.readObject();
-        if (!(possiblePemCert instanceof X509Certificate))
-        {
-            throw new CertificateException("Unexpected format for public certificate");
-        }
-        return (X509Certificate) possiblePemCert;
-    }
-
-    private Key convertPemToPrivateKey(String pem) throws IOException, CertificateException
-    {
-        Security.addProvider(new BouncyCastleProvider());
-        PEMReader pemCert = new PEMReader(new StringReader(pem));
-        Object possiblePemKey = pemCert.readObject();
-        if (!(possiblePemKey instanceof Key))
-        {
-            throw new CertificateException("Unexpected format for Pem Key");
-        }
-        return (Key) possiblePemKey;
     }
 
      /**
