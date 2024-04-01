@@ -3,6 +3,7 @@
 
 package com.microsoft.azure.sdk.iot.device.auth;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -173,7 +174,7 @@ public class IotHubCertificateManager
         {
             String line;
             StringBuilder cert = new StringBuilder();
-            while ((line = certReader.readLine()) != null)
+            while ((line = BoundedLineReader.readLine(certReader, 5_000_000)) != null)
             {
                 cert.append(line);
                 cert.append("\r\n");
