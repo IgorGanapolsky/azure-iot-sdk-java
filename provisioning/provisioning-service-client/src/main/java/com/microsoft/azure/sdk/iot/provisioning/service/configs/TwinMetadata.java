@@ -130,11 +130,11 @@ public class TwinMetadata
         for(Map.Entry<? extends String, Object> entry: ((Map<? extends String, Object>)metadata).entrySet())
         {
             String key = entry.getKey();
-            if(key.equals(LAST_UPDATE_TAG))
+            if(LAST_UPDATE_TAG.equals(key))
             {
                 lastUpdated = (String)entry.getValue();
             }
-            else if(key.equals(LAST_UPDATE_VERSION_TAG))
+            else if(LAST_UPDATE_VERSION_TAG.equals(key))
             {
                 if(!(entry.getValue() instanceof Number))
                 {

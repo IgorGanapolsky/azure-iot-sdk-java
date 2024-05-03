@@ -22,7 +22,7 @@ public class ProvisioningX509CertGen
             Scanner scanner = new Scanner(System.in);
             System.out.println("Do you want to input common name : Y/N(use default)");
             String isCnName = scanner.next();
-            if (isCnName.equalsIgnoreCase("Y"))
+            if ("Y".equalsIgnoreCase(isCnName))
             {
                 System.out.println("Input Client Cert commonName :");
                 aliasCertCnName = scanner.next();
@@ -51,7 +51,7 @@ public class ProvisioningX509CertGen
             String isVerify = scanner.next();
             try
             {
-                if (isVerify.equalsIgnoreCase("Y"))
+                if ("Y".equalsIgnoreCase(isVerify))
                 {
                     System.out.println("Input Verification Code");
                     scanner = new Scanner(System.in);

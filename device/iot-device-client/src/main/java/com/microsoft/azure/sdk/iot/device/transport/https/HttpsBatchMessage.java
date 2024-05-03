@@ -195,7 +195,7 @@ public final class HttpsBatchMessage implements HttpsMessage
      */
     private static String addJsonObjToArray(String jsonObj, String jsonArray)
     {
-        if (jsonArray.equals("[]"))
+        if ("[]".equals(jsonArray))
         {
             return "[" + jsonObj + "]";
         }

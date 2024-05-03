@@ -247,7 +247,7 @@ public class TransportClientSample
         String connString2 = args[1];
         String connString3 = args[2];
         IotHubClientProtocol protocol = IotHubClientProtocol.AMQPS;
-        if (args[3].equalsIgnoreCase("amqps_ws"))
+        if ("amqps_ws".equalsIgnoreCase(args[3]))
         {
             protocol = IotHubClientProtocol.AMQPS_WS;
         }

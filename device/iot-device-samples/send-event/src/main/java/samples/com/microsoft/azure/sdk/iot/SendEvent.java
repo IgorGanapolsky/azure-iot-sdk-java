@@ -84,23 +84,23 @@ public class SendEvent
         else
         {
             String protocolStr = args[2];
-            if (protocolStr.equals("https"))
+            if ("https".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.HTTPS;
             }
-            else if (protocolStr.equals("amqps"))
+            else if ("amqps".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.AMQPS;
             }
-            else if (protocolStr.equals("mqtt"))
+            else if ("mqtt".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.MQTT;
             }
-            else if (protocolStr.equals("amqps_ws"))
+            else if ("amqps_ws".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.AMQPS_WS;
             }
-            else if (protocolStr.equals("mqtt_ws"))
+            else if ("mqtt_ws".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.MQTT_WS;
             }

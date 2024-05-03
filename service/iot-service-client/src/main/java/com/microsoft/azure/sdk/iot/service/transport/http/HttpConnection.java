@@ -50,7 +50,7 @@ public class HttpConnection
     {
         // Codes_SRS_SERVICE_SDK_JAVA_HTTPCONNECTION_12_004: [If the URI given does not use the HTTPS protocol, the constructor shall throw an IllegalArgumentException.]
         String protocol = url.getProtocol();
-        if (!protocol.equalsIgnoreCase("HTTPS"))
+        if (!"HTTPS".equalsIgnoreCase(protocol))
         {
             String errMsg = String.format("Expected URL that uses iotHubServiceClientProtocol "
                             + "HTTPS but received one that uses "

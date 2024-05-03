@@ -214,7 +214,7 @@ public final class IotHubSasToken
 
         for (String field : fields)
         {
-            if (!field.equals(""))
+            if (!"".equals(field))
             {
                 String[] fieldParts = field.split(FieldKeyValueSeparator);
 

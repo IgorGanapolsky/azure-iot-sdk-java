@@ -44,15 +44,15 @@ public class SendSerializedEvent {
                     connectionString = rawArguments[0];
 
                     if (rawArguments.length >= 2) {
-                        if (rawArguments[1].equals("https")) {
+                        if ("https".equals(rawArguments[1])) {
                             protocol = IotHubClientProtocol.HTTPS;
-                        } else if (rawArguments[1].equals("amqps")) {
+                        } else if ("amqps".equals(rawArguments[1])) {
                             protocol = IotHubClientProtocol.AMQPS;
-                        } else if (rawArguments[1].equals("mqtt")) {
+                        } else if ("mqtt".equals(rawArguments[1])) {
                             protocol = IotHubClientProtocol.MQTT;
-                        } else if (rawArguments[1].equals("amqps_ws")) {
+                        } else if ("amqps_ws".equals(rawArguments[1])) {
                             protocol = IotHubClientProtocol.AMQPS_WS;
-                        } else if (rawArguments[1].equals("mqtt_ws")) {
+                        } else if ("mqtt_ws".equals(rawArguments[1])) {
                             protocol = IotHubClientProtocol.AMQPS_WS;
                         } else {
                             throw new Exception("Invalid protocol: " + rawArguments[2]);

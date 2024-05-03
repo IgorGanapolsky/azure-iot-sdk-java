@@ -269,7 +269,7 @@ public final class AmqpsDeviceMethods extends AmqpsDeviceOperations
             {
                 String propertyKey = entry.getKey();
 
-                if (propertyKey.equals(APPLICATION_PROPERTY_KEY_IOTHUB_METHOD_NAME))
+                if (APPLICATION_PROPERTY_KEY_IOTHUB_METHOD_NAME.equals(propertyKey))
                 {
                     iotHubTransportMessage.setMethodName(entry.getValue());
                 }

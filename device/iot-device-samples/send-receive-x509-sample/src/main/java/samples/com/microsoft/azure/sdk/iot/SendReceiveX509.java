@@ -150,11 +150,11 @@ public class SendReceiveX509
         else
         {
             String protocolStr = args[2].toLowerCase();
-            if (protocolStr.equals("amqps"))
+            if ("amqps".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.AMQPS;
             }
-            else if (protocolStr.equals("mqtt"))
+            else if ("mqtt".equals(protocolStr))
             {
                 protocol = IotHubClientProtocol.MQTT;
             }

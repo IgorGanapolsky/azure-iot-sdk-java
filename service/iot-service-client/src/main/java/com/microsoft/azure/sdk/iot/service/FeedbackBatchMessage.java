@@ -38,7 +38,7 @@ public class FeedbackBatchMessage
             }
 
             // Codes_SRS_SERVICE_SDK_JAVA_FEEDBACKBATCHMESSAGE_12_002: [The function shall return an empty FeedbackBatch object if the content of the Data input is empty]
-            if (!jsonString.equals(""))
+            if (!"".equals(jsonString))
             {
                 try (JsonReader jsonReader = Json.createReader(new StringReader(jsonString)))
                 {
@@ -62,16 +62,16 @@ public class FeedbackBatchMessage
                         String description = Tools.getValueFromJsonObject(jsonObject, "description");
                         feedbackRecord.setDescription(description);
 						String statusCode = Tools.getValueFromJsonObject(jsonObject, "statusCode");
-                        if (statusCode.toLowerCase().equals("success"))
+                        if ("success".equals(statusCode.toLowerCase()))
                         {
                             feedbackRecord.setStatusCode(FeedbackStatusCode.success);
-                        } else if (statusCode.toLowerCase().equals("expired"))
+                        } else if ("expired".equals(statusCode.toLowerCase()))
                         {
                             feedbackRecord.setStatusCode(FeedbackStatusCode.expired);
-                        } else if (statusCode.toLowerCase().equals("deliverycountexceeded"))
+                        } else if ("deliverycountexceeded".equals(statusCode.toLowerCase()))
                         {
                             feedbackRecord.setStatusCode(FeedbackStatusCode.deliveryCountExceeded);
-                        } else if (statusCode.toLowerCase().equals("rejected"))
+                        } else if ("rejected".equals(statusCode.toLowerCase()))
                         {
                             feedbackRecord.setStatusCode(FeedbackStatusCode.rejected);
                         }
