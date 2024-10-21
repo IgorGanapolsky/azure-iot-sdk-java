@@ -12,6 +12,8 @@ import com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningS
 import com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningServiceClientExceptionManager;
 import com.microsoft.azure.sdk.iot.provisioning.service.contract.ContractApiHttp;
 import com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningServiceClientTransportException;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import mockit.Deencapsulation;
 import mockit.Mocked;
 import mockit.NonStrictExpectations;
@@ -69,7 +71,7 @@ public class ContractApiHttpTest
                 result = VALID_SASTOKEN;
                 mockedProvisioningConnectionString.getHostName();
                 result = VALID_HOST_NAME;
-                new URL((String)any);
+                Urls.create((String)any, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 result = mockedURL;
                 new HttpRequest(mockedURL, HttpMethod.PUT, VALID_PAYLOAD.getBytes());
                 result = mockedHttpRequest;
@@ -212,7 +214,7 @@ public class ContractApiHttpTest
         new Verifications()
         {
             {
-                new URL(expectedURL);
+                Urls.create(expectedURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 times = 1;
             }
         };
@@ -293,7 +295,7 @@ public class ContractApiHttpTest
                 result = VALID_SASTOKEN;
                 mockedProvisioningConnectionString.getHostName();
                 result = VALID_HOST_NAME;
-                new URL((String)any);
+                Urls.create((String)any, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 result = new MalformedURLException();
             }
         };
@@ -349,7 +351,7 @@ public class ContractApiHttpTest
                 result = VALID_SASTOKEN;
                 mockedProvisioningConnectionString.getHostName();
                 result = VALID_HOST_NAME;
-                new URL((String)any);
+                Urls.create((String)any, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 result = mockedURL;
                 new HttpRequest(mockedURL, HttpMethod.PUT, VALID_PAYLOAD.getBytes());
                 result = new IOException();
@@ -478,7 +480,7 @@ public class ContractApiHttpTest
                 result = VALID_SASTOKEN;
                 mockedProvisioningConnectionString.getHostName();
                 result = VALID_HOST_NAME;
-                new URL((String)any);
+                Urls.create((String)any, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 result = mockedURL;
                 new HttpRequest(mockedURL, HttpMethod.PUT, VALID_PAYLOAD.getBytes());
                 result = mockedHttpRequest;
@@ -514,7 +516,7 @@ public class ContractApiHttpTest
                 result = VALID_SASTOKEN;
                 mockedProvisioningConnectionString.getHostName();
                 result = VALID_HOST_NAME;
-                new URL((String)any);
+                Urls.create((String)any, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 result = mockedURL;
                 new HttpRequest(mockedURL, HttpMethod.PUT, VALID_PAYLOAD.getBytes());
                 result = mockedHttpRequest;

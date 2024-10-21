@@ -21,6 +21,8 @@ import com.microsoft.azure.sdk.iot.provisioning.device.internal.parser.DeviceReg
 import com.microsoft.azure.sdk.iot.provisioning.device.internal.task.ContractState;
 import com.microsoft.azure.sdk.iot.provisioning.device.internal.task.RequestData;
 import com.microsoft.azure.sdk.iot.provisioning.device.internal.task.ResponseData;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import java.io.IOException;
 import java.net.URL;
@@ -187,7 +189,7 @@ public class ContractAPIHttp extends ProvisioningDeviceClientContract
             //SRS_ContractAPIHttp_25_025: [ This method shall build the required Json input using parser. ]
             byte[] payload = new DeviceRegistrationParser(requestData.getRegistrationId(), base64EncodedEk, base64EncodedSrk).toJson().getBytes();
             //SRS_ContractAPIHttp_25_005: [This method shall prepare the PUT request by setting following headers on a HttpRequest 1. User-Agent : User Agent String for the SDK 2. Accept : "application/json" 3. Content-Type: "application/json; charset=utf-8".]
-            HttpRequest httpRequest = this.prepareRequest(new URL(url), HttpMethod.PUT, payload, DEFAULT_HTTP_TIMEOUT_MS, null, SDKUtils.getUserAgentString());
+            HttpRequest httpRequest = this.prepareRequest(Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS), HttpMethod.PUT, payload, DEFAULT_HTTP_TIMEOUT_MS, null, SDKUtils.getUserAgentString());
             //SRS_ContractAPIHttp_25_006: [This method shall set the SSLContext for the Http Request.]
             httpRequest.setSSLContext(requestData.getSslContext());
             byte[] response = null;
@@ -274,7 +276,7 @@ public class ContractAPIHttp extends ProvisioningDeviceClientContract
             }
 
             //SRS_ContractAPIHttp_25_013: [This method shall prepare the PUT request by setting following headers on a HttpRequest 1. User-Agent : User Agent String for the SDK 2. Accept : "application/json" 3. Content-Type: "application/json; charset=utf-8" 4. Authorization: specified sas token as authorization if a non null value is given.]
-            HttpRequest httpRequest = this.prepareRequest(new URL(url), HttpMethod.PUT, payload, DEFAULT_HTTP_TIMEOUT_MS, headersMap, SDKUtils.getUserAgentString());
+            HttpRequest httpRequest = this.prepareRequest(Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS), HttpMethod.PUT, payload, DEFAULT_HTTP_TIMEOUT_MS, headersMap, SDKUtils.getUserAgentString());
             //SRS_ContractAPIHttp_25_014: [This method shall set the SSLContext for the Http Request.]
             httpRequest.setSSLContext(requestData.getSslContext());
             //SRS_ContractAPIHttp_25_015: [This method shall send http request and verify the status by calling 'ProvisioningDeviceClientExceptionManager.verifyHttpResponse'.]
@@ -332,7 +334,7 @@ public class ContractAPIHttp extends ProvisioningDeviceClientContract
                 headersMap.put(AUTHORIZATION, requestData.getSasToken());
             }
             //SRS_ContractAPIHttp_25_020: [This method shall prepare the GET request by setting following headers on a HttpRequest 1. User-Agent : User Agent String for the SDK 2. Accept : "application/json" 3. Content-Type: "application/json; charset=utf-8" 4. Authorization: specified sas token as authorization if a non null value is given.]
-            HttpRequest httpRequest = this.prepareRequest(new URL(url), HttpMethod.GET, new byte[0], DEFAULT_HTTP_TIMEOUT_MS, headersMap, SDKUtils.getUserAgentString());
+            HttpRequest httpRequest = this.prepareRequest(Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS), HttpMethod.GET, new byte[0], DEFAULT_HTTP_TIMEOUT_MS, headersMap, SDKUtils.getUserAgentString());
             //SRS_ContractAPIHttp_25_021: [This method shall set the SSLContext for the Http Request.]
             httpRequest.setSSLContext(requestData.getSslContext());
             //SRS_ContractAPIHttp_25_022: [This method shall send http request and verify the status by calling 'ProvisioningDeviceClientExceptionManager.verifyHttpResponse'.]

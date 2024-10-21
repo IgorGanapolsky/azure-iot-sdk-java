@@ -5,6 +5,8 @@
 
 package com.microsoft.azure.sdk.iot.service;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -108,7 +110,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(URL_PATH_METHODS);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -139,7 +141,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(jobId);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -160,7 +162,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(URL_PATH_QUERY);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -204,7 +206,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         }
 
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -237,7 +239,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(URL_PATH_CANCEL);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -266,7 +268,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(deviceId);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -297,7 +299,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(URL_PATH_TAGS);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -330,7 +332,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(URL_PATH_DESIRED);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -361,7 +363,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(deviceId);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -394,7 +396,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(maxCount.toString());
         stringBuilder.append(URL_SEPARATOR_2);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -416,7 +418,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(URL_PATH_DEVICES);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -438,7 +440,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append("create");
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**
@@ -460,7 +462,7 @@ public class IotHubConnectionString extends IotHubConnectionStringBuilder
         stringBuilder.append(jobId);
         stringBuilder.append(URL_SEPARATOR_1);
         stringBuilder.append(URL_API_VERSION);
-        return new URL(stringBuilder.toString());
+        return Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     }
 
     /**

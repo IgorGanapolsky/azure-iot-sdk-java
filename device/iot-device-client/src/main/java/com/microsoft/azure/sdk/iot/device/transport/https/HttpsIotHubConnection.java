@@ -5,6 +5,8 @@ package com.microsoft.azure.sdk.iot.device.transport.https;
 
 import com.microsoft.azure.sdk.iot.device.*;
 import com.microsoft.azure.sdk.iot.device.net.*;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
@@ -71,7 +73,7 @@ public class HttpsIotHubConnection
 
             // Codes_SRS_HTTPSIOTHUBCONNECTION_11_002: [The function shall send a request to the URL 'https://[iotHubHostname]/devices/[deviceId]/messages/events?api-version=2016-02-03'.]
             IotHubEventUri iotHubEventUri = new IotHubEventUri(iotHubHostname, deviceId);
-            URL eventUrl = new URL(HTTPS_HEAD_TAG + iotHubEventUri.toString());
+            URL eventUrl = Urls.create(HTTPS_HEAD_TAG + iotHubEventUri.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
             // Codes_SRS_HTTPSIOTHUBCONNECTION_11_003: [The function shall send a POST request.]
             // Codes_SRS_HTTPSIOTHUBCONNECTION_11_004: [The function shall set the request body to the message body.]
@@ -153,7 +155,7 @@ public class HttpsIotHubConnection
 
             // Codes_SRS_HTTPSIOTHUBCONNECTION_21_041: [The function shall send a request to the URL https://[iotHubHostname]/devices/[deviceId]/[path]?api-version=2016-02-03.]
             IotHubUri iotHubUri = new IotHubUri(iotHubHostname, deviceId, httpsPath);
-            URL messageUrl = new URL(HTTPS_HEAD_TAG + iotHubUri.toString());
+            URL messageUrl = Urls.create(HTTPS_HEAD_TAG + iotHubUri.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
             // Codes_SRS_HTTPSIOTHUBCONNECTION_21_042: [The function shall send a `httpsMethod` request.]
             // Codes_SRS_HTTPSIOTHUBCONNECTION_21_043: [The function shall set the request body to the message body.]
@@ -225,7 +227,7 @@ public class HttpsIotHubConnection
 
             // Codes_SRS_HTTPSIOTHUBCONNECTION_11_013: [The function shall send a request to the URL 'https://[iotHubHostname]/devices/[deviceId]/messages/devicebound?api-version=2016-02-03'.]
             IotHubMessageUri messageUri = new IotHubMessageUri(iotHubHostname, deviceId);
-            URL messageUrl = new URL(HTTPS_HEAD_TAG + messageUri.toString());
+            URL messageUrl = Urls.create(HTTPS_HEAD_TAG + messageUri.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
             // Codes_SRS_HTTPSIOTHUBCONNECTION_11_014: [The function shall send a GET request.]
             HttpsRequest request =
@@ -325,7 +327,7 @@ public class HttpsIotHubConnection
                     resultUri += completeUri.toString();
                     // Codes_SRS_HTTPSIOTHUBCONNECTION_11_026: [If the result is COMPLETE, the function shall set the header field 'iothub-to' to be '/devices/[deviceId]/messages/devicebound/[eTag]'.]
                     resultPath = completeUri.getPath();
-                    resultUrl = new URL(resultUri);
+                    resultUrl = Urls.create(resultUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                     // Codes_SRS_HTTPSIOTHUBCONNECTION_11_025: [If the result is COMPLETE, the function shall send a DELETE request.]
                     request = new HttpsRequest(resultUrl, HttpsMethod.DELETE,
                             new byte[0]);
@@ -338,7 +340,7 @@ public class HttpsIotHubConnection
                     resultUri += abandonUri.toString();
                     // Codes_SRS_HTTPSIOTHUBCONNECTION_11_029: [If the result is ABANDON, the function shall set the header field 'iothub-to' to be '/devices/[deviceId]/messages/devicebound/[eTag]/abandon'.]
                     resultPath = abandonUri.getPath();
-                    resultUrl = new URL(resultUri);
+                    resultUrl = Urls.create(resultUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                     // Codes_SRS_HTTPSIOTHUBCONNECTION_11_028: [If the result is ABANDON, the function shall send a POST request.]
                     // The IoT Hub service requires the content-length header to be
                     // set but the Java SE connection omits content-length
@@ -355,7 +357,7 @@ public class HttpsIotHubConnection
                     resultUri += rejectUri.toString();
                     // Codes_SRS_HTTPSIOTHUBCONNECTION_11_032: [If the result is REJECT, the function shall set the header field 'iothub-to' to be '/devices/[deviceId]/messages/devicebound/[eTag]'.]
                     resultPath = rejectUri.getPath();
-                    resultUrl = new URL(resultUri);
+                    resultUrl = Urls.create(resultUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                     // Codes_SRS_HTTPSIOTHUBCONNECTION_11_031: [If the result is REJECT, the function shall send a DELETE request.]
                     request = new HttpsRequest(resultUrl, HttpsMethod.DELETE,
                             new byte[0]);

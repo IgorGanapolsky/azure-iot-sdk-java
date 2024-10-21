@@ -3,6 +3,8 @@ package tests.integration.com.microsoft.azure.sdk.iot.iothubservices;
 import com.microsoft.azure.sdk.iot.device.*;
 import com.microsoft.azure.sdk.iot.service.*;
 import com.microsoft.azure.sdk.iot.service.exceptions.IotHubException;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.junit.*;
 import tests.integration.com.microsoft.azure.sdk.iot.DeviceConnectionString;
 
@@ -219,7 +221,7 @@ public class TransportClientFileUploadIT
 
         assertTrue(fileUploadNotification.getBlobSizeInBytes() == fileUploadState.fileLength);
 
-        URL u = new URL(fileUploadNotification.getBlobUri());
+        URL u = Urls.create(fileUploadNotification.getBlobUri(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         try (InputStream inputStream = u.openStream())
         {
             byte[] testBuf = new byte[(int)fileUploadState.fileLength];
