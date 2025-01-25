@@ -13,6 +13,8 @@ import com.microsoft.azure.sdk.iot.provisioning.service.auth.ProvisioningSasToke
 import com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningServiceClientExceptionManager;
 import com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningServiceClientException;
 import com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningServiceClientTransportException;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -215,7 +217,7 @@ public class ContractApiHttp
         URL url;
         try
         {
-            url = new URL(stringBuilder.toString());
+            url = Urls.create(stringBuilder.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         }
         catch (MalformedURLException e)
         {
