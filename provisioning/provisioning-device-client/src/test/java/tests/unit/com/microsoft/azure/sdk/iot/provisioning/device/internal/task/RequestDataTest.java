@@ -8,6 +8,7 @@
 package tests.unit.com.microsoft.azure.sdk.iot.provisioning.device.internal.task;
 
 import com.microsoft.azure.sdk.iot.provisioning.device.internal.task.RequestData;
+import java.security.SecureRandom;
 import mockit.Mocked;
 import mockit.integration.junit4.JMockit;
 import org.junit.Test;
@@ -130,7 +131,7 @@ public class RequestDataTest
     @Test
     public void setAndGetEkAndSRKSucceeds() throws Exception
     {
-        String random = new Random().toString();
+        String random = new SecureRandom().toString();
         //act
         //act
         RequestData testRequestData = newInstance(RequestData.class, new Class[] {byte[].class, byte[].class, String.class,
@@ -154,7 +155,7 @@ public class RequestDataTest
     @Test
     public void setAndGetWithOpIdSucceeds() throws Exception
     {
-        String random = new Random().toString();
+        String random = new SecureRandom().toString();
         //act
         //act
         RequestData testRequestData = newInstance(RequestData.class, new Class[] {String.class,
@@ -179,7 +180,7 @@ public class RequestDataTest
     @Test
     public void setAndGetWithRegIdSucceeds() throws Exception
     {
-        String random = new Random().toString();
+        String random = new SecureRandom().toString();
         //act
         //act
         RequestData testRequestData = newInstance(RequestData.class, new Class[] {String.class,

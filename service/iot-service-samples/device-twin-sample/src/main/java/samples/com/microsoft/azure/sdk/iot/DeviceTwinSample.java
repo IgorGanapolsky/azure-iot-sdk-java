@@ -11,6 +11,7 @@ import com.microsoft.azure.sdk.iot.service.jobs.JobResult;
 import com.microsoft.azure.sdk.iot.service.jobs.JobStatus;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.*;
 
 /** Manages device twin operations on IotHub */
@@ -89,8 +90,8 @@ public class DeviceTwinSample
     private static void changeDesiredProperties(DeviceTwin twinClient, DeviceTwinDevice device) throws IOException, IotHubException
     {
         Set<Pair> desiredProperties = new HashSet<Pair>();
-        desiredProperties.add(new Pair("temp", new Random().nextInt(TEMPERATURE_RANGE)));
-        desiredProperties.add(new Pair("hum", new Random().nextInt(HUMIDITY_RANGE)));
+        desiredProperties.add(new Pair("temp", new SecureRandom().nextInt(TEMPERATURE_RANGE)));
+        desiredProperties.add(new Pair("hum", new SecureRandom().nextInt(HUMIDITY_RANGE)));
         device.setDesiredProperties(desiredProperties);
 
         System.out.println("Updating Device twin (new temp, hum)");
@@ -118,8 +119,8 @@ public class DeviceTwinSample
     {
         // new set of desired properties
         Set<Pair> desiredProperties = new HashSet<Pair>();
-        desiredProperties.add(new Pair("temp", new Random().nextInt(TEMPERATURE_RANGE)));
-        desiredProperties.add(new Pair("hum", new Random().nextInt(HUMIDITY_RANGE)));
+        desiredProperties.add(new Pair("temp", new SecureRandom().nextInt(TEMPERATURE_RANGE)));
+        desiredProperties.add(new Pair("hum", new SecureRandom().nextInt(HUMIDITY_RANGE)));
         device.setDesiredProperties(desiredProperties);
 
         // date when the update shall be executed
@@ -149,8 +150,8 @@ public class DeviceTwinSample
     {
         // new set of desired properties
         Set<Pair> desiredProperties = new HashSet<Pair>();
-        desiredProperties.add(new Pair("temp", new Random().nextInt(TEMPERATURE_RANGE)));
-        desiredProperties.add(new Pair("hum", new Random().nextInt(HUMIDITY_RANGE)));
+        desiredProperties.add(new Pair("temp", new SecureRandom().nextInt(TEMPERATURE_RANGE)));
+        desiredProperties.add(new Pair("hum", new SecureRandom().nextInt(HUMIDITY_RANGE)));
         device.setDesiredProperties(desiredProperties);
 
         // date when the update shall be executed

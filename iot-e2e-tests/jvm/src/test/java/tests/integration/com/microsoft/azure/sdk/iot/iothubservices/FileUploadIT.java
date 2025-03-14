@@ -11,6 +11,7 @@ import com.microsoft.azure.sdk.iot.device.IotHubEventCallback;
 import com.microsoft.azure.sdk.iot.device.IotHubStatusCode;
 import com.microsoft.azure.sdk.iot.service.*;
 import com.microsoft.azure.sdk.iot.service.exceptions.IotHubException;
+import java.security.SecureRandom;
 import org.junit.*;
 import tests.integration.com.microsoft.azure.sdk.iot.DeviceConnectionString;
 
@@ -160,7 +161,7 @@ public class FileUploadIT
         for (int i = 0; i < MAX_FILES_TO_UPLOAD; i++)
         {
             byte[] buf = new byte[i];
-            new Random().nextBytes(buf);
+            new SecureRandom().nextBytes(buf);
             fileUploadState[i] = new FileUploadState();
             fileUploadState[i].blobName = REMOTE_FILE_NAME + i + REMOTE_FILE_NAME_EXT;
             fileUploadState[i].fileInputStream = new ByteArrayInputStream(buf);
